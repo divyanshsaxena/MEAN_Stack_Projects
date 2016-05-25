@@ -281,3 +281,24 @@ we create an empty one in the form of an array before continuing */
 
 //---------------------------------------------------------
 
+//Getting multiple parameters from URL
+// grab the packages we need
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 8079;
+
+// routes will go here
+
+// start the server
+app.listen(port);
+console.log('Server started! At http://localhost:' + port);
+
+app.get('/api/users', function(req, res) {
+  var user_id = req.param('id');
+  var token = req.param('token');
+  var geo = req.param('geo');  
+  res.send(user_id + ' ' + token + ' ' + geo);
+});
+
+//Type this in URL to see the results
+//http://localhost:8079/api/users?id=4&token=sdfa3&geo=us
